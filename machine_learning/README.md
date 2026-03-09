@@ -1,6 +1,7 @@
 # Machine Learning
 Dataset: https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+dataset
 
+## Analyzing
 Antes de iniciar qualquer execução de código, é preciso fazer uma análise das colunas do nosso dataset.  
 
 | Columns | Description |
@@ -15,7 +16,7 @@ Antes de iniciar qualquer execução de código, é preciso fazer uma análise d
 | URLSimilarityIndex | O quão esse URL é similar com outros URLs conhecidos (e válidos) |
 | CharContinuationRate | Frequência que characters continuão até um espaço aparecer |
 | TLDLegitimateProb | Probabilidade de ser um TLD autorizado |
-| URLCharProb | |
+| URLCharProb | Probabilidade da sequência de characters na URL serem de um site legítimo  |
 | TLDLength | Tamanho do TLD |
 | NoOfSubDomain | Número de [subdomains](https://en.wikipedia.org/wiki/Subdomain), (uma vez que você chega em um site como `steampowered.com`, ele pode te redirecionar para um subdomain dele como `store.steampowered.com`) |
 | HasObfuscation | `1` == URL possui ofuscações, `0` == URL não possui,  |
@@ -62,7 +63,19 @@ Antes de iniciar qualquer execução de código, é preciso fazer uma análise d
 | NoOfExternalRef | Quantidade de links apontando para sites externos |
 | label | `1` == website legítimo, `0` == phishing  |
 
-## Clean up
+### Categories
+
+Podemos separar os dados coletados em 3 categorias:
+- Dados extraidos do URL
+    - URLLength, DomainLength, ...
+- Dados extraidos do conteúdo da página
+    - LineOfCode, HasTitle, ...
+- Dados extraidos do comportamento da conexão
+    - NoOfURLRedirect, NoOfSelfRedirect, ...
+- Outros
+    - Robots
+
+## Preprocessing
 Colunas com valores do tipo strings precisam ser removidas, isso é necessário já que os algoritmos apenas trabalham com número. Colunas a serem removidas:  
 
 - FILENAME
@@ -71,5 +84,44 @@ Colunas com valores do tipo strings precisam ser removidas, isso é necessário 
 - TLD
 - Title
 
-Qualquer informação que seja considerada útil para o algoritmo deve ser extraida **antes** disto. Por exemplo, o autor do dataset criou a coluna `IsHTTPS` pois considerou uma informação importante de se ter sobre o URL.  
+Qualquer informação que seja considerada útil para o algoritmo deve ser extraida **antes** desta etapa e transformada em uma nova coluna. Por exemplo, o autor do dataset criou a coluna `IsHTTPS` pois considerou uma informação importante de se ter sobre o URL.  
 
+### Categories
+Seria bom fornecer funcionamento mesmo quando o usuário só tivesse parte das informações.  
+
+Se o usuário apenas possuir a **URL**, **conteúdo da página** e **HAR file**, precisaremos ter um modelo que trabalhe bem sem as seguintes colunas:  
+
+- Robots
+
+Se o usuário apenas possuir a **URL** e **conteúdo da página**, precisaremos ter um modelo que trabalhe bem sem as seguintes colunas:  
+
+- NoOfURLRedirect
+- NoOfSelfRedirect
+
+Se o usuário apenas possuir a **URL**, precisaremos ter um modelo que trabalhe bem sem as seguintes colunas:  
+
+- LineOfCode
+- LargestLineLength
+- HasTitle
+- DomainTitleMatchScore
+- URLTitleMatchScore
+- HasFavicon
+- IsResponsive
+- HasDescription
+- NoOfPopup
+- NoOfiFrame
+- HasExternalFormSubmit
+- HasSocialNet
+- HasSubmitButton
+- HasHiddenFields
+- HasPasswordField
+- Bank
+- Pay
+- Crypto
+- HasCopyrightInfo
+- NoOfImage
+- NoOfCSS
+- NoOfJS
+- NoOfSelfRef
+- NoOfEmptyRef
+- NoOfExternalRef
