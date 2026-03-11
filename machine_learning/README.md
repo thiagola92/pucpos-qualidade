@@ -125,3 +125,12 @@ Se o usuário apenas possuir a **URL**, precisaremos ter um modelo que trabalhe 
 - NoOfSelfRef
 - NoOfEmptyRef
 - NoOfExternalRef
+
+## Notes
+1. Quando a URL utiliza um IP address, o dataset bota o TLD como o último valor.
+    - `http://198.98.58.123/` => 123
+    - `http://43.128.92.128/` => 128
+2. Quando a URL utiliza um IP address, o dataset conta tudo antes do penúltimo valor como subdomain.
+    - `http://198.98.58.123/` => 2
+    - `http://43.128.92.128/` => 2
+    - `http://188.128.202.35.bc.googleusercontent.com/` => 5
