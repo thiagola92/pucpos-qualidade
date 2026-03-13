@@ -86,6 +86,12 @@ Colunas com valores do tipo strings precisam ser removidas, isso é necessário 
 
 Qualquer informação que seja considerada útil para o algoritmo deve ser extraida **antes** desta etapa e transformada em uma nova coluna. Por exemplo, o autor do dataset criou a coluna `IsHTTPS` pois considerou uma informação importante de se ter sobre o URL.  
 
+As seguintes colunas foram removidas pois não foi possível deduzir a formula para seu valores:
+- URLSimilarityIndex
+- CharContinuationRate
+- TLDLegitimateProb
+- URLCharProb
+
 ### Categories
 Seria bom fornecer funcionamento mesmo quando o usuário só tivesse parte das informações.  
 
