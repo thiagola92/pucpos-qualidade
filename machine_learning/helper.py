@@ -1,4 +1,4 @@
-from urllib.parse import urlsplit, SplitResult
+from urllib.parse import urlsplit, SplitResult, unquote
 from ipaddress import ip_address
 
 
@@ -22,6 +22,16 @@ def get_subdomain(hostname: str) -> str:
     return subdomain
 
 
+def count_obfuscations(url: str) -> int:
+    # Special characters in the URL are escaped as "%xx".
+    # After unescape they will become 1 character again,
+    # which means that the string size will be reduced by 2 for each one found.
+    found = (len(url) - len(unquote(url))) / 2
+
+    # Know that we know the quantity, we can tell how many chars were used in obfuscations.
+    return found * 3
+
+
 def count_letters(url: str) -> int:
     return len([c for c in url if c.isascii() and c.isalpha()])
 
@@ -31,17 +41,20 @@ def count_digits(url: str) -> int:
 
 
 def count_special_chars(url: str) -> int:
+    u = (
+        url.removeprefix("http")
+        .removeprefix("s")
+        .removeprefix("://")
+        .removeprefix("www.")
+    )
+
     return (
-        url.count("#")
-        + url.count("%")
-        + url.count("-")
-        + url.count("_")
-        + url.count("@")
-        + url.count("!")
-        + url.count(",")
-        + url.count(".")
-        + url.count("~")
-        + url.count(":")
+        len(u)
+        - count_letters(u)
+        - count_digits(u)
+        - u.count("=")
+        - u.count("?")
+        - u.count("&")
     )
 
 
@@ -71,9 +84,9 @@ def analyze_url(url: str) -> tuple:
         0,  # URLCharProb
         len(tld),  # TLDLength
         len(subdomain.split(".")),  # NoOfSubDomain
-        0,  # HasObfuscation
-        0,  # NoOfObfuscatedChar
-        0,  # ObfuscationRatio
+        count_obfuscations(url) != 0,  # HasObfuscation
+        count_obfuscations(url),  # NoOfObfuscatedChar
+        count_obfuscations(url) / len(url),  # ObfuscationRatio
         count_letters(url),  # NoOfLettersInURL
         count_letters(url) / len(url),  # LetterRatioInURL
         count_digits(url),  # NoOfDegitsInURL
@@ -97,3 +110,6 @@ analyze_url("https://192.168.0.1/")
 analyze_url("http://192.168.0.1/")
 analyze_url("https://192.168.0.1:5000/")
 analyze_url("https://user:pass@192.168.0.1:5000/")
+analyze_url("https://www.website.com/q=%20a%20b")
+print("https://www.website.com/q=%20a%20b%2F")
+print(unquote("https://www.website.com/q=%20a%20b%2F"))

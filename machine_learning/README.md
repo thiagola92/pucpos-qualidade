@@ -20,7 +20,7 @@ Antes de iniciar qualquer execução de código, é preciso fazer uma análise d
 | TLDLength | Tamanho do TLD |
 | NoOfSubDomain | Número de [subdomains](https://en.wikipedia.org/wiki/Subdomain), (uma vez que você chega em um site como `steampowered.com`, ele pode te redirecionar para um subdomain dele como `store.steampowered.com`) |
 | HasObfuscation | `1` == URL possui ofuscações, `0` == URL não possui,  |
-| NoOfObfuscatedChar | Quantidade de ofuscações no URL (`%20`, `%3A`, ...) |
+| NoOfObfuscatedChar | Quantidade de characters utilizados para ofuscações no URL (`%20`, `%3A`, ...) |
 | ObfuscationRatio | Porcentagem de ofuscações no URL |
 | NoOfLettersInURL | Quantidade de letras no URL |
 | LetterRatioInURL | Porcentagem de letras no URL |
@@ -29,7 +29,7 @@ Antes de iniciar qualquer execução de código, é preciso fazer uma análise d
 | NoOfEqualsInURL | Quantidade de `=` no URL |
 | NoOfQMarkInURL | Quantidade de `?` no URL |
 | NoOfAmpersandInURL | Quantidade de `&` no URL |
-| NoOfOtherSpecialCharsInURL | Quantidade de outros characters especiais (`#  %  -  _  @  !  ,  .  ~  :`) |
+| NoOfOtherSpecialCharsInURL | Quantidade de outros characters (não  "") |
 | SpacialCharRatioInURL | Porcentagem de characters especiais |
 | IsHTTPS | `1` == usa HTTPS, `0` == não usa,  |
 | LineOfCode | Quantidade de linhas no conteúdo da página |
@@ -134,3 +134,8 @@ Se o usuário apenas possuir a **URL**, precisaremos ter um modelo que trabalhe 
     - `http://198.98.58.123/` => 2
     - `http://43.128.92.128/` => 2
     - `http://188.128.202.35.bc.googleusercontent.com/` => 5
+3. A função responsável por calcular `NoOfOtherSpecialCharsInURL` é um palpite, pois no dataset possuimos:
+    - `https://www.dzwww.com` => 0
+    - `https://www.southbankmosaics.com` => 1
+    - `https://www.voicefmradio.co.uk` => 2
+    - `https://maildinshaakckjnw411.web.app/` => 3
