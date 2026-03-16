@@ -29,7 +29,6 @@ class ResponseContent(BaseModel):
     har_analyzed: bool
     page_analyzed: bool
     url_analyzed: bool
-
     is_legit: bool
 
 
