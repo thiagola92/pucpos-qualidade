@@ -80,7 +80,7 @@ def analyze_url(url: str) -> dict[str, list]:
         "IsDomainIP": [int(is_ip(component.hostname or ""))],
         "TLDLength": [len(tld)],
         "NoOfSubDomain": [len(subdomain.split("."))],
-        "HasObfuscation": [count_obfuscations(url) != 0],
+        "HasObfuscation": [int(count_obfuscations(url) != 0)],
         "NoOfObfuscatedChar": [count_obfuscations(url)],
         "ObfuscationRatio": [count_obfuscations(url) / len(url)],
         "NoOfLettersInURL": [count_letters(url)],
