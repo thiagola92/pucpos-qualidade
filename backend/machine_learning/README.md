@@ -155,3 +155,9 @@ Para conseguir transformar uma URL em dados pro modelo, é importante entender c
     - `https://www.southbankmosaics.com` => 0.581 (esperava 0.843750)
     - `https://www.uni-mainz.de` => 0.391 (esperava 0.750000)
     - `https://www.voicefmradio.co.uk` => 0.517 (esperava 0.800000)
+6. O campo `IsDomainIP` pode estar incorreto:
+    - `64.47.167.72.host.secureserver.net` => 1 (esperava 0)
+    - `244.33.109.208.host.secureserver.net` => 1 (esperava 0)
+6. O campo `TLDLength` pode estar incorreto:
+    - `https://www-realizesolucoesfinanceiras-com-br-7.rds.land:443/realizesolucoesfinanceiras` => 8 (esperava 4)
+    - `https://carousell-paynow.firebaseapp.com:443/minesd/index.html` => 7 (esperava 3)

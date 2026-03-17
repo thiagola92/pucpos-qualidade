@@ -22,6 +22,12 @@ def get_subdomain(hostname: str) -> str:
     return subdomain
 
 
+def count_subdomains(subdomain: str) -> str:
+    parts = [s for s in subdomain.split(".") if len(s) != 0]
+
+    return len(parts)
+
+
 def count_obfuscations(url: str) -> int:
     # Special characters in the URL are escaped as "%xx".
     # After unescape they will become 1 character again,
@@ -79,7 +85,7 @@ def analyze_url(url: str) -> dict[str, list]:
         "DomainLength": [len(component.hostname or "")],
         "IsDomainIP": [int(is_ip(component.hostname or ""))],
         "TLDLength": [len(tld)],
-        "NoOfSubDomain": [len(subdomain.split("."))],
+        "NoOfSubDomain": [count_subdomains(subdomain)],
         "HasObfuscation": [int(count_obfuscations(url) != 0)],
         "NoOfObfuscatedChar": [count_obfuscations(url)],
         "ObfuscationRatio": [count_obfuscations(url) / len(url)],
