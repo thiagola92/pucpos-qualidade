@@ -80,7 +80,7 @@ def post(body: RequestBody):
     # Use model3.
     data = analyze_url(body.url)
     dataframe = DataFrame(data=data, columns=list(data.keys()))
-    result = model3.predict(dataframe.values)
+    result = model3.predict(dataframe)
 
     return JSONResponse(
         status_code=status.HTTP_200_OK,

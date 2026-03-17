@@ -132,7 +132,9 @@ Se o usuário apenas possuir a **URL**, precisaremos ter um modelo que trabalhe 
 - NoOfEmptyRef
 - NoOfExternalRef
 
-## Notes
+## Confunsion
+Para conseguir transformar uma URL em dados pro modelo, é importante entender como cada feature é calculada. Porém foram descobertas diversas complicações no dataset:
+
 1. Quando a URL utiliza um IP address, o dataset bota o TLD como o último valor.
     - `http://198.98.58.123/` => 123
     - `http://43.128.92.128/` => 128
@@ -140,8 +142,16 @@ Se o usuário apenas possuir a **URL**, precisaremos ter um modelo que trabalhe 
     - `http://198.98.58.123/` => 2
     - `http://43.128.92.128/` => 2
     - `http://188.128.202.35.bc.googleusercontent.com/` => 5
-3. A função responsável por calcular `NoOfOtherSpecialCharsInURL` é um palpite, pois no dataset possuimos:
+3. Não foi possível descobrir a função por traz da feature `NoOfOtherSpecialCharsInURL`:
     - `https://www.dzwww.com` => 0
     - `https://www.southbankmosaics.com` => 1
     - `https://www.voicefmradio.co.uk` => 2
     - `https://maildinshaakckjnw411.web.app/` => 3
+4. O campo `URLLength` parece ter um a menos do real tamanho:
+    - `https://www.southbankmosaics.com` => 31 (esperava 32)
+    - `https://www.uni-mainz.de` => 23 (esperava 24)
+    - `https://mail-service-100960.weeblysite.com/` => 42 (esperava 43)
+5. Não foi possível descobrir a função por traz da feature `LetterRatioInURL`:
+    - `https://www.southbankmosaics.com` => 0.581 (esperava 0.843750)
+    - `https://www.uni-mainz.de` => 0.391 (esperava 0.750000)
+    - `https://www.voicefmradio.co.uk` => 0.517 (esperava 0.800000)

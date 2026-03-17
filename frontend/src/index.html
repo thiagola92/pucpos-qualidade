@@ -3,20 +3,29 @@
 <head>
     <link rel="stylesheet" href="css/pico.jade.css">
     <link rel="stylesheet" href="css/debug.css">
+    <script src="js/analyze.js"></script>
 </head>
 
 <body class="container">
     <main class="">
-        <form class="">
-            <label>
-                URL
-                <input type="url" name="url" placeholder="https://www.google.com/" aria-label="Url">
+        <label>
+            URL
+            <input id="url" type="url" name="url" value="https://www.example.com/" aria-label="Url">
+        </label>
+
+        <hr />
+
+        <details>
+            <summary>Adicionar conteúdo da página</summary>
+            <label aria-disabled="true">
+                <input type="checkbox" name="robots" disabled /> Desejo que o server colete para mim.
             </label>
+            <input type="file">
 
             <hr />
 
             <details>
-                <summary>Adicionar conteúdo da página</summary>
+                <summary>Adicionar arquivo HAR</summary>
                 <label aria-disabled="true">
                     <input type="checkbox" name="robots" disabled /> Desejo que o server colete para mim.
                 </label>
@@ -25,32 +34,19 @@
                 <hr />
 
                 <details>
-                    <summary>Adicionar arquivo HAR</summary>
+                    <summary>Adicionr arquivo robots.txt</summary>
                     <label aria-disabled="true">
                         <input type="checkbox" name="robots" disabled /> Desejo que o server colete para mim.
                     </label>
-                    <input type="file">
-
-                    <hr />
-
-                    <details>
-                        <summary>Adicionr arquivo robots.txt</summary>
-                        <p>Sites de phishing costumam evitar indexação de web crawlers, utilizando:</p>
-                        <pre><code>noindex<br/>nofollow</code></pre>
-
-                        <label aria-disabled="true">
-                            <input type="checkbox" name="robots" disabled /> Desejo que o server colete para mim.
-                        </label>
-                        <input type="file" />
-                    </details>
+                    <input type="file" />
                 </details>
             </details>
+        </details>
 
-            <hr />
-            <br />
+        <hr />
+        <br />
 
-            <input type="button" value="Analisar">
-        </form>
+        <input type="button" value="Analisar">
     </main>
 </body>
 

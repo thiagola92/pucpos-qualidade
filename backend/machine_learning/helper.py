@@ -75,9 +75,9 @@ def analyze_url(url: str) -> dict[str, list]:
     # print({"tld": tld, "subdomain": subdomain})
 
     return {
-        "URLength": [len(url)],
+        "URLLength": [len(url)],
         "DomainLength": [len(component.hostname or "")],
-        "IsDomainIP": [is_ip(component.hostname or "")],
+        "IsDomainIP": [int(is_ip(component.hostname or ""))],
         "TLDLength": [len(tld)],
         "NoOfSubDomain": [len(subdomain.split("."))],
         "HasObfuscation": [count_obfuscations(url) != 0],
@@ -92,7 +92,7 @@ def analyze_url(url: str) -> dict[str, list]:
         "NoOfAmpersandInURL": [url.count("&")],
         "NoOfOtherSpecialCharsInURL": [count_special_chars(url)],
         "SpacialCharRatioInURL": [count_special_chars(url) / len(url)],
-        "IsHTTPS": [component.scheme == "https"],
+        "IsHTTPS": [int(component.scheme == "https")],
     }
 
 
