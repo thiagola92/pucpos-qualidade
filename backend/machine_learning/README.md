@@ -169,11 +169,11 @@ Para conseguir transformar uma URL em dados pro modelo, é importante entender c
     - `https://c-h-exp.builderallwppro.com/dh/dhl/billing.php?omnisendattributionid=sms_campaign_6411693d408b4700155f892a&omnisendcontactid=641168088a542d001a706b72&utm_campaign=campaign%3a+copy+of%3a+adaer+%286411693d408b4700155f892a%29&utm_medium=sms&utm_source=omnisend` => 6 (esperava 12)
 7. Por causa do campo acima calcular incorreta, o campo `HasObfuscation` também pode estar incorreto.
 8. Não está contando o último character do link, consequentemente campos de contagem podem estar incorretos:
-    - NoOfDegitsInURL
-    - NoOfEqualsInURL
-    - NoOfQMarkInURL
-    - NoOfAmpersandInURL
-    - URLLength
+    - `NoOfDegitsInURL`
+    - `NoOfEqualsInURL`
+    - `NoOfQMarkInURL`
+    - `NoOfAmpersandInURL`
+    - `URLLength`
     - ...
 9. O campo `IsHTTPS` pode estar incorreto pois procura "https" em qualquer parte da URL.
     - `http://43.134.167.94/servicelogin?passive=1209600&amp;continue=https://accounts.google.com/?&amp;xrealip=107.178.232.242&amp;followup=https://accounts.google.com/?&amp;xrealip=107.178.232.242` => True (esperava False)
