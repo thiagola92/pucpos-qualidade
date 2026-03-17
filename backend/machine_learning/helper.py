@@ -47,20 +47,13 @@ def count_digits(url: str) -> int:
 
 
 def count_special_chars(url: str) -> int:
-    u = (
-        url.removeprefix("http")
-        .removeprefix("s")
-        .removeprefix("://")
-        .removeprefix("www.")
-    )
-
     return (
-        len(u)
-        - count_letters(u)
-        - count_digits(u)
-        - u.count("=")
-        - u.count("?")
-        - u.count("&")
+        len(url)
+        - count_letters(url)
+        - count_digits(url)
+        - url.count("=")
+        - url.count("?")
+        - url.count("&")
     )
 
 
