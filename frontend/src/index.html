@@ -1,20 +1,69 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/pico.jade.css">
-    <link rel="stylesheet" href="css/debug.css">
     <script src="js/analyze.js"></script>
 </head>
 
 <body class="container">
     <main class="">
         <label>
-            URL
+            Website
             <input id="urlField" type="url" name="url" value="https://www.example.com" aria-label="Url">
             <small id="resultText"></small>
         </label>
 
         <input id="analyzeButton" type="button" value="Analisar">
+
+        <details>
+            <summary>Observações</summary>
+
+            <ul>
+                <li>
+                    Websites com <code>https</code> são naturalmente mais confiáveis.
+                    <table class="grid">
+                        <tr>
+                            <td class="goodCell">Confiável</td>
+                            <td>https://xxxxxxxxx</td>
+                        </tr>
+                        <tr>
+                            <td class="badCell">Suspeito</td>
+                            <td>http://xxxxxxxxx</td>
+                        </tr>
+                    </table>
+                </li>
+
+                <li>
+                    A utilização de IP torna naturalmente mais suspeito.
+                    <table class="grid">
+                        <tr>
+                            <td class="goodCell">Confiável</td>
+                            <td>https://www.example.com</td>
+                        </tr>
+                        <tr>
+                            <td class="badCell">Suspeito</td>
+                            <td>https://198.51.100.56</td>
+                        </tr>
+                    </table>
+                </li>
+
+                <li>
+                    Possuir autenticação básica torna mais suspeito.
+                    <table class="grid">
+                        <tr>
+                            <td class="goodCell">Confiável</td>
+                            <td>https://xxxxxxxxx</td>
+                        </tr>
+                        <tr>
+                            <td class="badCell">Suspeito</td>
+                            <td>https://user:pass@xxxxxxxxx</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+
+        </details>
     </main>
 </body>
 

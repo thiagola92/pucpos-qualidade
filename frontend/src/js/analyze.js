@@ -22,10 +22,10 @@ async function onAnalyzeRequested() {
 
     if (content["is_legit"] == true) {
         urlField.setAttribute("aria-invalid", "false");
-        resultText.textContent = "Parece legitimo"
+        resultText.textContent = "Ok"
     } else {
         urlField.setAttribute("aria-invalid", "true");
-        resultText.textContent = "Parece phishing"
+        resultText.textContent = "Suspeito"
     }
 }
 

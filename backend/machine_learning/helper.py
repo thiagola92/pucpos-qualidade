@@ -93,19 +93,3 @@ def analyze_url(url: str) -> dict[str, list]:
         "SpacialCharRatioInURL": [count_special_chars(url) / len(url)],
         "IsHTTPS": [int(component.scheme == "https")],
     }
-
-
-# Move to tests.
-# analyze_url("https://www.example.com/")
-# analyze_url("https://example.com/")
-# analyze_url("http://example.com/")
-# analyze_url("https://www.example.ai/")
-# analyze_url("https://www.store.example.ai/")
-# analyze_url("https://store.example.ai/")
-# analyze_url("https://192.168.0.1/")
-# analyze_url("http://192.168.0.1/")
-# analyze_url("https://192.168.0.1:5000/")
-# analyze_url("https://user:pass@192.168.0.1:5000/")
-# analyze_url("https://www.website.com/q=%20a%20b")
-# print("https://www.website.com/q=%20a%20b%2F")
-# print(unquote("https://www.website.com/q=%20a%20b%2F"))
