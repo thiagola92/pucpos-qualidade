@@ -10,43 +10,11 @@
     <main class="">
         <label>
             URL
-            <input id="url" type="url" name="url" value="https://www.example.com/" aria-label="Url">
+            <input id="urlField" type="url" name="url" value="https://www.example.com" aria-label="Url">
+            <small id="resultText"></small>
         </label>
 
-        <hr />
-
-        <details>
-            <summary>Adicionar conteúdo da página</summary>
-            <label aria-disabled="true">
-                <input type="checkbox" name="robots" disabled /> Desejo que o server colete para mim.
-            </label>
-            <input type="file">
-
-            <hr />
-
-            <details>
-                <summary>Adicionar arquivo HAR</summary>
-                <label aria-disabled="true">
-                    <input type="checkbox" name="robots" disabled /> Desejo que o server colete para mim.
-                </label>
-                <input type="file">
-
-                <hr />
-
-                <details>
-                    <summary>Adicionr arquivo robots.txt</summary>
-                    <label aria-disabled="true">
-                        <input type="checkbox" name="robots" disabled /> Desejo que o server colete para mim.
-                    </label>
-                    <input type="file" />
-                </details>
-            </details>
-        </details>
-
-        <hr />
-        <br />
-
-        <input type="button" value="Analisar">
+        <input id="analyzeButton" type="button" value="Analisar">
     </main>
 </body>
 
