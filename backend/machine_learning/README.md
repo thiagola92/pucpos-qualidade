@@ -143,7 +143,6 @@ Para conseguir transformar uma URL em dados pro modelo, é importante entender c
 2. Quando a URL utiliza um IP address, o dataset conta tudo antes do penúltimo valor como subdomain.
     - `http://198.98.58.123/` => 2
     - `http://43.128.92.128/` => 2
-    - `http://188.128.202.35.bc.googleusercontent.com/` => 5
 3. Não foi possível descobrir a função por traz da feature `NoOfOtherSpecialCharsInURL`:
     - `https://www.dzwww.com` => 0
     - `https://www.southbankmosaics.com` => 1
