@@ -4,6 +4,8 @@ Dataset: https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+dataset
 ## Analyzing
 Antes de iniciar qualquer execução de código, é preciso fazer uma análise das colunas do nosso dataset.  
 
+**Observação**: Isso foi necessário pois detalhes sobre as colunas não está disponível publicamente (o [artigo](https://www.sciencedirect.com/science/article/abs/pii/S0167404823004558?via%3Dihub) não é público).  
+
 | Columns | Description |
 | --- | --- |
 | FILENAME | **Provavelmente** o arquivo contendo o corpo da página HTML |
