@@ -2,6 +2,10 @@ from ipaddress import ip_address
 from urllib.parse import urlsplit, SplitResult, unquote
 
 
+class InvalidUrl(Exception):
+    pass
+
+
 def is_ip(netloc: str) -> bool:
     try:
         ip_address(netloc)
@@ -22,7 +26,7 @@ def get_subdomain(hostname: str) -> str:
     return subdomain
 
 
-def count_subdomains(subdomain: str) -> str:
+def count_subdomains(subdomain: str) -> int:
     parts = [s for s in subdomain.split(".") if len(s) != 0]
 
     return len(parts)
@@ -58,6 +62,9 @@ def count_special_chars(url: str) -> int:
 
 
 def analyze_url(url: str) -> dict[str, list]:
+    if len(url) == 0:
+        raise InvalidUrl()
+
     component: SplitResult = urlsplit(url)
     tld = get_tld(component.hostname or "")
     subdomain = get_subdomain(component.hostname or "")

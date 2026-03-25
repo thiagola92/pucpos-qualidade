@@ -7,13 +7,11 @@ Python package manager and
 Make sure to install uv: https://docs.astral.sh/uv/getting-started/installation/
 
 Install dependencies:
-
 ```
 uv sync
 ```
 
 Then start the project in development mode:
-
 ```
 uv run fastapi dev app.py
 ```
@@ -22,7 +20,11 @@ This will watch the project directory and restart as necessary.
 
 Access through http://127.0.0.1:8000
 
-# References
+Execute tests using:
+```
+python -m pytest
+```
 
+# References
 - https://fastapi.tiangolo.com/
 - https://fastapi.tiangolo.com/advanced/additional-status-codes/
