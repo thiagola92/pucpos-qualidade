@@ -1,3 +1,4 @@
+import json
 import pickle
 from pathlib import Path
 
@@ -6,11 +7,12 @@ from fastapi import APIRouter, status
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 
-from machine_learning.helper import analyze_url
+from machine_learning_remake.helper import analyze_url
 
 
 router = APIRouter()
-model = pickle.loads(Path("./machine_learning/model.pkl").read_bytes())
+model = pickle.loads(Path("./machine_learning_remake/model.pkl").read_bytes())
+tld_occurrence = json.loads(Path("./machine_learning_remake/tld.json").read_text())
 
 
 class RequestBody(BaseModel):
@@ -21,9 +23,13 @@ class ResponseContent(BaseModel):
     is_legit: bool
 
 
-@router.post("/analyze")
+@router.post("/v2/analyze")
 def post(body: RequestBody):
-    data = analyze_url(body.url)
+    data = analyze_url(body.url, tld_occurrence)
+
+    for k in data:
+        data[k] = [data[k]]
+
     dataframe = DataFrame(data=data, columns=list(data.keys()))
     result = model.predict(dataframe)
 

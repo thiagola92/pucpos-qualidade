@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-from routes.analyze import router as analyze
+from routes.v1.analyze import router as analyze
+from routes.v2.analyze import router as analyze2
 
 
 app = FastAPI()
@@ -15,6 +16,7 @@ app.add_middleware(
 )
 
 app.include_router(analyze)
+app.include_router(analyze2)
 
 
 @app.get("/")

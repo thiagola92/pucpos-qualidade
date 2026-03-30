@@ -1,7 +1,6 @@
-
 async function onAnalyzeRequested() {
     let url = urlField.value;
-    let response = await fetch("http://127.0.0.1:8000/analyze", {
+    let response = await fetch("http://127.0.0.1:8000/v1/analyze", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
