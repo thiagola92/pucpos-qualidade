@@ -69,17 +69,6 @@ def analyze_url(url: str) -> dict[str, list]:
     tld = get_tld(component.hostname or "")
     subdomain = get_subdomain(component.hostname or "")
 
-    # print(component)
-    # print(
-    #     {
-    #         "username": component.username,
-    #         "password": component.password,
-    #         "hostname": component.hostname,
-    #         "port": component.port,
-    #     }
-    # )
-    # print({"tld": tld, "subdomain": subdomain})
-
     return {
         "URLLength": [len(url)],
         "DomainLength": [len(component.hostname or "")],
