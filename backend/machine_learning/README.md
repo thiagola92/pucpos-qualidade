@@ -1,7 +1,9 @@
 # Machine Learning
-Dataset: https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+dataset
+Este diretório contém os arquivos relacionados ao aprendizado de máquina.  
 
-## Analyzing
+**Dataset utilizado**: https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+dataset
+
+# Analyzing
 Antes de iniciar qualquer execução de código, é preciso fazer uma análise das colunas do nosso dataset.  
 
 **Observação**: Isso foi necessário pois detalhes sobre as colunas não está disponível publicamente (o [artigo](https://www.sciencedirect.com/science/article/abs/pii/S0167404823004558?via%3Dihub) não é público).  
@@ -65,7 +67,7 @@ Antes de iniciar qualquer execução de código, é preciso fazer uma análise d
 | NoOfExternalRef | Quantidade de links apontando para sites externos |
 | label | `1` == website legítimo, `0` == phishing  |
 
-### Categories
+## Categories
 
 Podemos separar os dados coletados em 3 categorias:
 - Dados extraidos do URL
@@ -77,7 +79,7 @@ Podemos separar os dados coletados em 3 categorias:
 - Outros
     - Robots
 
-## Preprocessing
+# Preprocessing
 Colunas com valores do tipo strings precisam ser removidas, isso é necessário já que os algoritmos apenas trabalham com número. Colunas a serem removidas:  
 
 - FILENAME
@@ -86,27 +88,27 @@ Colunas com valores do tipo strings precisam ser removidas, isso é necessário 
 - TLD
 - Title
 
-Qualquer informação que seja considerada útil para o algoritmo deve ser extraida **antes** desta etapa e transformada em uma nova coluna. Por exemplo, o autor do dataset criou a coluna `IsHTTPS` pois considerou uma informação importante de se ter sobre o URL.  
+**Importante**: Qualquer informação que seja considerada útil para o algoritmo deve ser extraida **antes** desta etapa e transformada em uma nova coluna. Por exemplo, o autor do dataset criou a coluna `IsHTTPS` pois considerou uma informação importante de se ter sobre o URL.  
 
 As seguintes colunas foram removidas pois não foi possível deduzir a formula para seu valores:
+
 - URLSimilarityIndex
 - CharContinuationRate
 - TLDLegitimateProb
 - URLCharProb
 
-### Categories
-Seria bom fornecer funcionamento mesmo quando o usuário só tivesse parte das informações.  
+Para diminuir a nível do projeto, iremos remover algumas colunas que iriam requerir maior trabalho na hora de receber input do usuário.  
 
-Se o usuário apenas possuir a **URL**, **conteúdo da página** e **HAR file**, precisaremos ter um modelo que trabalhe bem sem as seguintes colunas:  
+Para não termos que requisitar o *robots.txt*, iremos remover:  
 
 - Robots
 
-Se o usuário apenas possuir a **URL** e **conteúdo da página**, precisaremos ter um modelo que trabalhe bem sem as seguintes colunas:  
+Para não termos que trabalhar com algo como [**HAR file**](https://en.wikipedia.org/wiki/HAR_(file_format)), iremos remover:  
 
 - NoOfURLRedirect
 - NoOfSelfRedirect
 
-Se o usuário apenas possuir a **URL**, precisaremos ter um modelo que trabalhe bem sem as seguintes colunas:  
+Para não termos que baixar o conteúdo das páginas, iremos remover:  
 
 - LineOfCode
 - LargestLineLength
@@ -134,7 +136,7 @@ Se o usuário apenas possuir a **URL**, precisaremos ter um modelo que trabalhe 
 - NoOfEmptyRef
 - NoOfExternalRef
 
-## Confunsion
+# Confunsion
 Para conseguir transformar uma URL em dados pro modelo, é importante entender como cada feature é calculada. Porém foram descobertas diversas complicações no dataset:
 
 1. Quando a URL utiliza um IP address, o dataset bota o TLD como o último valor.

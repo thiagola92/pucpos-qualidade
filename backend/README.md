@@ -1,30 +1,31 @@
 # Backend
-This project uses [uv](https://docs.astral.sh/uv/guides/install-python/) as
-Python package manager and
-[FastAPI](https://github.com/thiagola92/pucpos-arquitetura-b) as framework.
+O backend utiliza:
+- Package manager: [uv](https://docs.astral.sh/uv/)  
+- API framekwork: [FastAPI](https://fastapi.tiangolo.com/)  
+- Test framework: [pytest](https://docs.pytest.org/en/stable/)  
 
-# Usage
-Make sure to install uv: https://docs.astral.sh/uv/getting-started/installation/
+# Utilização
+> [!WARNING]  
+> É preciso ter o package manager uv instalado para seguir as instruções seguintes: https://docs.astral.sh/uv/getting-started/installation/  
 
-Install dependencies:
+Instalação das dependências:  
 ```
 uv sync
 ```
 
-Then start the project in development mode:
+Inicializar o backend em development mode:  
 ```
 uv run fastapi dev app.py
 ```
 
-This will watch the project directory and restart as necessary.
+Após isso o framework irá monitorar mudanças nos arquivos e atualizar o backend quando tiver alterações. Acesse a API pelo seguinte URL: http://127.0.0.1:8000  
 
-Access through http://127.0.0.1:8000
-
-Execute tests using:
+Execução dos testes:  
 ```
 python -m pytest
 ```
 
-# References
+# Referências
 - https://fastapi.tiangolo.com/
 - https://fastapi.tiangolo.com/advanced/additional-status-codes/
+- https://docs.pytest.org/en/stable/
