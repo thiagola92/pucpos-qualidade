@@ -1,6 +1,13 @@
 # Machine Learning
 Este diretório contém os arquivos relacionados ao aprendizado de máquina.  
 
+Existem dois notebooks neste diretório:
+- [main_local](./main_local.ipynb)
+    - Principal notebook usado durante o desenvolvimento do código
+- [main_colab](./main_colab.ipynb)
+    - Adaptação do notebook acima para o Colab
+    - ["a entrega final para esta parte do MVP deverá obrigatoriamente ser um notebook aberto no Colab"](https://colab.research.google.com/drive/1NIA0aLa72H3mvPapSzL0fs2OEM7V_7He?usp=drive_link)
+
 **Dataset utilizado**: https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+dataset
 
 # Analyzing
