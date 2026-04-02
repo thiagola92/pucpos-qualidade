@@ -8,6 +8,10 @@ O backend utiliza:
 > [!WARNING]  
 > É preciso ter o package manager uv instalado para seguir as instruções seguintes: https://docs.astral.sh/uv/getting-started/installation/  
 
+> [!NOTE]  
+> Os códigos seguintes supões que você está localizado no diretório `backend`.  
+> Não confundir com `pucpos-qualidade` (diretório pai) que é apenas responsável por armazenar os diretórios.  
+
 Instalação das dependências:  
 ```
 uv sync
