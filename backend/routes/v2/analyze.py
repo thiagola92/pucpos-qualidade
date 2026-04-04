@@ -1,5 +1,4 @@
 import json
-import pickle
 from pathlib import Path
 
 from pandas import DataFrame
@@ -7,11 +6,12 @@ from fastapi import APIRouter, status
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 
+from utils import get_model
 from machine_learning_remake.helper import analyze_url
 
 
 router = APIRouter()
-model = pickle.loads(Path("./machine_learning_remake/model.pkl").read_bytes())
+model = get_model(2)
 tld_occurrence = json.loads(Path("./machine_learning_remake/tld.json").read_text())
 
 

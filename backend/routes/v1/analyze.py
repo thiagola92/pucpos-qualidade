@@ -1,16 +1,14 @@
-import pickle
-from pathlib import Path
-
 from pandas import DataFrame
 from fastapi import APIRouter, status
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 
+from utils import get_model
 from machine_learning.helper import analyze_url
 
 
 router = APIRouter()
-model = pickle.loads(Path("./machine_learning/model.pkl").read_bytes())
+model = get_model(1)
 
 
 class RequestBody(BaseModel):
