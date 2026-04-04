@@ -6,11 +6,12 @@ Existem dois notebooks neste diretório:
     - Principal notebook usado durante o desenvolvimento do código
 - [main_colab](./main_colab.ipynb)
     - Adaptação do notebook acima para o Colab
-    - ["a entrega final para esta parte do MVP deverá obrigatoriamente ser um notebook aberto no Colab"](https://colab.research.google.com/drive/1NIA0aLa72H3mvPapSzL0fs2OEM7V_7He?usp=drive_link)
+    - "a entrega final para esta parte do MVP deverá obrigatoriamente ser um notebook aberto no Colab"
+        - [Notebook Colab](https://colab.research.google.com/drive/1NIA0aLa72H3mvPapSzL0fs2OEM7V_7He?usp=drive_link)
 
 **Dataset utilizado**: https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+dataset
 
-# Analyzing
+# Análise
 Antes de iniciar qualquer execução de código, é preciso fazer uma análise das colunas do nosso dataset.  
 
 **Observação**: Isso foi necessário pois detalhes sobre as colunas não está disponível publicamente (o [artigo](https://www.sciencedirect.com/science/article/abs/pii/S0167404823004558?via%3Dihub) não é público).  
@@ -74,7 +75,7 @@ Antes de iniciar qualquer execução de código, é preciso fazer uma análise d
 | NoOfExternalRef | Quantidade de links apontando para sites externos |
 | label | `1` == website legítimo, `0` == phishing  |
 
-## Categories
+## Categorias
 
 Podemos separar os dados coletados em 3 categorias:
 - Dados extraidos do URL
@@ -86,7 +87,7 @@ Podemos separar os dados coletados em 3 categorias:
 - Outros
     - Robots
 
-# Preprocessing
+# Preprocessamento
 Colunas com valores do tipo strings precisam ser removidas, isso é necessário já que os algoritmos apenas trabalham com número. Colunas a serem removidas:  
 
 - FILENAME
@@ -143,7 +144,7 @@ Para não termos que baixar o conteúdo das páginas, iremos remover:
 - NoOfEmptyRef
 - NoOfExternalRef
 
-# Confunsion
+# Qualidade dos Dados
 Para conseguir transformar uma URL em dados pro modelo, é importante entender como cada feature é calculada. Porém foram descobertas diversas complicações no dataset:
 
 1. Quando a URL utiliza um IP address, o dataset bota o TLD como o último valor.
