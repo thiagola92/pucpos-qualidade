@@ -11,3 +11,11 @@
 .badCell {
     background-color: rgb(252.5, 230.5, 191.5);
 }
+
+footer {
+    text-align: end;
+}
+
+.version {
+    min-width: 75px;
+}
