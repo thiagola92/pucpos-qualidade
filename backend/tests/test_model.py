@@ -1,21 +1,15 @@
-import pickle
 from time import time
-from pathlib import Path
 
 import pandas
 from pandas import DataFrame
 from sklearn.metrics import accuracy_score
 
 from machine_learning.helper import analyze_url
-
-
-def load_model():
-    output_path = Path("machine_learning/model.pkl")
-    return pickle.loads(output_path.read_bytes())
+from utils import get_model_path, get_model, get_csv
 
 
 def create_dataset():
-    dataset = pandas.read_csv("machine_learning/dataset.csv")
+    dataset = pandas.read_csv(get_csv())
     data = {
         "URLLength": [],
         "DomainLength": [],
@@ -52,7 +46,7 @@ def create_dataset():
 
 def test_loading_model_duration():
     start = time()
-    _ = load_model()
+    _ = get_model()
     end = time()
 
     # 30 seconds
@@ -69,7 +63,7 @@ def test_creating_dataset_duration():
 
 
 def test_model_accuracy_score():
-    model = load_model()
+    model = get_model()
     dataset = create_dataset()
     X = dataset.drop(columns=["label"])
     y = dataset["label"]
@@ -78,7 +72,7 @@ def test_model_accuracy_score():
 
 
 def test_model_size():
-    size = Path("machine_learning/model.pkl").stat().st_size
+    size = get_model_path().stat().st_size
 
     # 50MB
     assert size < 50_000_000
